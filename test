@@ -1,7 +1,6 @@
-http://ftpmaster.internal/ubuntu/pool/main/a/acl/libacl1_2.2.53-6_amd64.deb [18820/18820]\
+2> /dev/null - error
 
-bootstrap.log
-
+1> /dev/null - output
 
 grep -c 'libacl1' /var/log/bootstrap.log
 
@@ -92,3 +91,6 @@ echo 'A:\ B:\ C:\ D:\' | awk -F ':\\\\' -v OFS=- '{print $1,$2,$3,$4,$5}'
 
 awk -F'- -' '{print $1,$2,$3,$4,$5}' access.log
 awk -F' ' '{print $1,$2,$3,$4,$5}' access.log
+
+
+echo 'someletters_12345_moreleters.ext' | cut -d'_' -f 2
