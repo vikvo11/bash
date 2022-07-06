@@ -92,5 +92,37 @@ echo 'A:\ B:\ C:\ D:\' | awk -F ':\\\\' -v OFS=- '{print $1,$2,$3,$4,$5}'
 awk -F'- -' '{print $1,$2,$3,$4,$5}' access.log
 awk -F' ' '{print $1,$2,$3,$4,$5}' access.log
 
-
+##############
 echo 'someletters_12345_moreleters.ext' | cut -d'_' -f 2
+number=$(echo $filename | egrep -o '[[:digit:]]{5}' | head -n1)
+number=${filename:offset:length}
+number=$(echo $filename | awk -F _ '{ print $2 }')
+
+
+number=$(echo $filename | tr -cd '[[:digit:]]')   # to remove everything except digits, use
+#################
+first word: head -1 file1.c | cut -d" " -f 1
+
+last word: tail -1 file1.c | rev | cut -d" " -f 1 | rev
+
+awk 'NR==1{print $1} END{print $NF}' auth.log
+
+echo 'one two three four' | awk '{print $(NF-1)}'
+
+
+echo -e 'one 1\n two 2' | awk '/one/ {print $1}'
+
+echo -e 'one 1\n two 2' | awk '{sum+=$2} END {print sum}'
+
+cat /var/log/apache2/access.log | awk '{print $10}'
+awk '{totalBytes+=$NF} END {print totalBytes}' requests.log 
+
+
+$cat greekfile | tr “[a-z]” “[A-Z]”
+
+$cat geekfile | tr “[:lower:]” “[:upper:]”
+
+echo "Welcome To GeeksforGeeks" | tr [:space:] '\t'
+
+echo "my ID is 73535" | tr -d [:digit:]
+echo "my ID is 73535" | tr -cd [:digit:]
