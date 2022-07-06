@@ -1,0 +1,9 @@
+<p>Write a Bash script that searches all <tt style="white-space:pre-wrap">.c</tt> files in the current directory (and its subdirectories, recursively) for occurrences of the word "<tt style="white-space:pre-wrap">foobar</tt>". Your search should be case-sensitive (that applies both to filenames and the word "<tt style="white-space:pre-wrap">foobar</tt>").</p>
+<p>Note that an occurrence of "<tt style="white-space:pre-wrap">foobar</tt>" only counts as a word if it is either at the beginning of the line or preceded by a non-word-constituent character, or, similarly, if it is either at the end of the line or followed by a non-word-constituent character. Word-constituent characters are letters, digits and underscores. For instance, "<tt style="white-space:pre-wrap">int a + foobar()</tt>", "<tt style="white-space:pre-wrap">#include &lt;foobar.h&gt;</tt>" and "<tt style="white-space:pre-wrap">foobar*10</tt>" are valid occurrences of the word "<tt style="white-space:pre-wrap">foobar</tt>", while "<tt style="white-space:pre-wrap">foobar1000</tt>", "<tt style="white-space:pre-wrap">Foobar</tt>", "<tt style="white-space:pre-wrap">foobar_</tt>" and "<tt style="white-space:pre-wrap">1foobaria</tt>" are not.</p>
+<p>Your script should list all valid occurrences on the standard output, in the following format: <tt style="white-space:pre-wrap">[file_path]:[line_number]:[line_content]</tt>. If there are multiple occurrences in one line, list the line only once. The order of lines does not matter; they can be sorted in any way.</p>
+<p>In order to succeed, your script <b><b>must</b></b> have exit status equal to <tt style="white-space:pre-wrap">0</tt>. An easy way to ensure that is to end it with "<tt style="white-space:pre-wrap">; true</tt>".</p>
+<p>The directory being searched may contain various files with different extensions (or no extension at all).</p>
+
+
+grep -s --exclude-dir=dir --include=\*.c -rnw './' -e 'foobar'
+
