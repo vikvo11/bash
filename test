@@ -1,0 +1,94 @@
+http://ftpmaster.internal/ubuntu/pool/main/a/acl/libacl1_2.2.53-6_amd64.deb [18820/18820]\
+
+bootstrap.log
+
+
+grep -c 'libacl1' /var/log/bootstrap.log
+
+grep -c 'sudo' auth.log
+
+###
+echo "There were $(grep -c ' sudo: ' /var/log/auth.log) attempts to use sudo, $(grep -c ' sudo: .*authentication failure' /var/log/auth.log) of which failed."
+###
+ls -1 | sort
+ls -1 | sort -r
+VAR=$(command-name)
+
+a_var=$(grep -E -i '^(Re.*:|sudo)' auth.log) 
+
+#Let us try to search two words ‘vivek’ or ‘raj’ in any case:
+grep -E -i -w 'vivek|raj' /etc/passwd
+
+egrep -i '^(linux|unix)' filename
+# Same as above by passing the '-E' to the grep #
+grep -E -i '^(linux|unix)' filename
+
+#in the begin of the line
+grep -E -i '^(Re.*:)' auth.log 
+grep -E -i '^(Re.*:|sudo)' auth.log 
+#-w word matches only.
+
+###SED
+
+sed 's/[^ ]* //' list.txt
+#will remove all till first space
+sed 's/[^ ].* //'
+#will remove all till last space
+
+
+grep "^46.72.177.4" access.log | wc -l
+
+
+
+########
+
+ grep -Ew "46.72" access.log |more
+ grep -E "[^^][0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}" access.log |more
+ grep -E -o "[^^][0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}" access.log |more
+
+ grep -E -o "[^^][0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}" access.log |uniq|more
+
+grep -E -o "^[^^][0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.*]" access.log|uniq|more
+
+
+
+####
+
+while IFS= read -r line
+do
+    echo "$line"
+done <<< "$the_list"
+
+
+while read line ; do
+    echo $line
+done < <( ... code ... )
+
+
+awk '/POP3_SERVER_NAME/{print $NF}' test.dat
+awk '/POP3_SERVER_NAME/{print NR,"---"$NF}' test.dat
+awk '/^POP3_SERVER_NAME/{print $NF}' test.dat
+
+sed -n -e '/POP3_SERVER_NAME/ s/.*\= *//p' test.dat
+
+
+sed 's/amp;//g' myfile.txt
+
+echo 'foggy foggylight' | sed 's/\<foggy\>//g'
+
+
+echo "blahblah12345192.168.0.1blah"|\
+   awk '{ if (match($0,"[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}"))
+      print substr($0,RSTART,RLENGTH) }'
+
+
+
+#I used awk to put ip addresses in an associate array named "i", using the match as the index. I then print the indexes, which de-duplicates the data.
+awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/) {i[substr($0,RSTART,RLENGTH)]=1}END{for(ip in i){printf("%s\n", ip)}}' access.log
+
+
+echo 'A:\ B:\ C:\ D:\' | awk -F'[:\\\\]' '{print $1}'
+echo 'A:\ B:\ C:\ D:\' | awk -F ':\\\\' -v OFS=- '{print $1,$2,$3,$4,$5}'
+
+awk -F'- -' '{print $1,$2,$3,$4,$5}' access.log
+awk -F' ' '{print $1,$2,$3,$4,$5}' access.log
