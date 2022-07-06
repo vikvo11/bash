@@ -1,0 +1,23 @@
+
+#!/bin/bash
+
+while read line; do
+    sB=0
+    if [[ "$line" = * ]]; then
+        sB=1
+        (( sudoCount++ ))
+        echo $line
+        touch ./test/$line
+        
+    fi
+done <<<  "bike.png
+car.jpg
+comedy.mov
+error.log
+horror.avi
+info.txt
+interview.mp3
+song.flac
+tree-small.jpeg
+11.10.2017_y"
+echo "done"
