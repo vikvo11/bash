@@ -1,0 +1,30 @@
+#!/bin/bash
+while read line; do
+    if [ "$line" = *.mp3 ] || [ "$line" = *.flac ]; then
+        #echo $line
+        mkdir -p music
+        mv $line music/
+    fi
+    if [ "$line" = *.jpeg ] || [ "$line" = *.png ]|| [ "$line" = *.jpg ]; then
+        #echo $line
+        mkdir -p images
+        mv $line images/
+    fi
+    if [ "$line" = *.avi ] || [ "$line" = *.mov ]; then
+        #echo $line
+        mkdir -p videos
+        mv $line videos/
+    fi
+    if [[ "$line" = *.log ]]; then
+        #echo $line
+        rm $line
+
+    fi
+done <<<  "$(ls -1)"
+
+# simpler solution:
+: 'mkdir -p music videos images
+mv *.flac *.mp3 music/
+mv *.jpeg *.png *.jpg images/
+mv *.avi *.mov videos/
+rm *.log'
